@@ -55,30 +55,33 @@ function onCountryClick (event) {
 countryArray = [];
 
 class Country extends React.Component {
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '1' name = 'Germany'></div>
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '2' name = 'France'></div>
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '3' name = 'UK'></div>
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '4' name = 'Netherlands'></div>
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '5' name = 'Italy'></div>
+    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '6' name = 'Spain'></div>
   render() {
     return (
         <div style = {quiz_countries}>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '1' name = 'Germany'>Germany</div>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '2' name = 'France'>France</div>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '3' name = 'UK'>UK</div>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '4' name = 'Netherlands'>Netherlands</div>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '5' name = 'Italy'>Italy</div>
-            <div style = {quiz_countries__country} onClick={onCountryClick} id = '6' name = 'Spain'>Spain</div>
+            <div>{quiz_country.props.name}</div>
             <Capital/>
         </div>   
     );
   }
 }
+
 class Capital extends React.Component {
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '1' name = 'Berlin'></div>
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '2' name = 'Paris'></div>
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '3' name = 'London'></div>
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '4' name = 'Amsterdam'></div>
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '5' name = 'Rome'></div>
+    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '6' name = 'Madrid'></div>
   render() {
     return (
         <div style = {quiz_capitals}>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '1' name = 'Berlin'>Berlin</div>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '2' name = 'Paris'>Paris</div>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '3' name = 'London'>London</div>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '4' name = 'Amsterdam'>Amsterdam</div>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '5' name = 'Rome'>Rome</div>
-            <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '6' name = 'Madrid'>Madrid</div>
+            <div>{quiz_capital.props.name}</div>
         </div>
     );
   }
