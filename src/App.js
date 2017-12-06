@@ -12,7 +12,7 @@ const quiz_capitals = {
     color: 'green'
 };
 const quiz_countries = {
-    color: 'blue',
+    color: 'blue'
 };
 const quiz_capitals__capital = {
     padding: '15px',
@@ -52,43 +52,42 @@ function onCountryClick (event) {
 добавить map() пробежаться с помощью него по странам и столицам, вынести их
 
 */
-countryArray = [];
 
-class Country extends React.Component {
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '1' name = 'Germany'></div>
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '2' name = 'France'></div>
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '3' name = 'UK'></div>
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '4' name = 'Netherlands'></div>
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '5' name = 'Italy'></div>
-    quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '6' name = 'Spain'></div>
+class App extends React.Component{
+    static defaultPrors() {
+        return {
+            countries: this.state.countries, 
+            capitals: this.state.capitals
+        };
+    }
+    state = {
+       countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}],
+       capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 4}],
+    }
+    render(){
+        return (
+          <div>
+              {this.state.countries.map(country=> {
+               return <Country name={country.name} key={country.id} id={country.id} />
+             })}
+        </div>
+       )
+    }
+}
+
+class Country extends React.Component { 
   render() {
     return (
-        <div style = {quiz_countries}>
-            <div>{quiz_country.props.name}</div>
-            <Capital/>
-        </div>   
-    );
+        <div style = {quiz_countries__country} onClick={onCountryClick} data-id = {this.props.id}>{this.props.name}</div>
+    )
   }
 }
 
 class Capital extends React.Component {
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '1' name = 'Berlin'></div>
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '2' name = 'Paris'></div>
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '3' name = 'London'></div>
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '4' name = 'Amsterdam'></div>
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '5' name = 'Rome'></div>
-    quiz_capital <div style = {quiz_capitals__capital} onClick={onCapitalClick} id = '6' name = 'Madrid'></div>
   render() {
     return (
-        <div style = {quiz_capitals}>
-            <div>{quiz_capital.props.name}</div>
-        </div>
-    );
-  }
-  function getInitialState(){
-      const capitalItems = [this.props.name];
-      const mappedCapitalArray = capitalArray.map((capitalItem) =>
-  <li>{number}</li>
+        <div style = {quiz_capitals__capital} onClick={onCapitalClick} data-id = {this.props.id}>{this.props.name}</div>
+    )
   }
 }
-export default Country;
+export default App;
