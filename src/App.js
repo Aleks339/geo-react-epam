@@ -67,10 +67,8 @@ class App extends React.Component{
     render(){
         return (
           <div>
-              {this.state.countries.map(country=> ((n)createFragment ({
-                    Country: <Country name={country.props.name} key={country.props.id} id={country.props.id} />,
-                    Capital: <Capital name={capital.props.name} key={capital.props.id} id={capital.props.id} /> 
-                )}
+              {this.state.countries.map(country=> {
+               return <Country name={country.name} key={country.id} id={country.id} />
              })}
         </div>
        )
