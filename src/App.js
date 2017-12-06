@@ -68,7 +68,14 @@ class App extends React.Component{
         return (
           <div>
               {this.state.countries.map(country=> {
-               return <Country name={country.name} key={country.id} id={country.id} />
+               return (
+                    <div>
+                        <Country name={country.name} key={country.id} id={country.id} />
+                        <Capital name={capital.name} key={capital.id} id={capital.id} />
+                    </div>
+                ) 
+                console.log(capital)
+                console.log(country)
              })}
         </div>
        )
