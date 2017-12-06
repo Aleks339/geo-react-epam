@@ -45,6 +45,7 @@ function onCountryClick (event) {
         event.currentTarget.style.display = 'visible';
     }
 };
+
 /*
 создать компонент quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '1'>Germany</div>
 создать компонент quiz_capital
@@ -61,21 +62,29 @@ class App extends React.Component{
         };
     }
     state = {
-       countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}],
-       capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 4}],
+       countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}, {name: 'Spain', id: 4}, {name: 'Norway', id: 5}, {name: 'Hungary', id: 6}],
+       capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 3}, {name: 'Madrid', id: 4}, {name: 'Oslo', id: 5}, {name: 'Budapest', id: 6}],
     }
     render(){
+        let countries = this.state.countries;
+        let capitals = this.state.capitals;
+        let ramdomCountry = countries[Math.floor(Math.random() * countries.length)];
+        let ramdomCapital = capitals[Math.floor(Math.random() * capitals.length)];
         return (
           <div>
-              {this.state.countries.map(country=> {
+              {this.state.capitals.map((capital)=> {
+               return (
+                    <div>
+                        <Capital name={capital.name} key={capital.id} id={capital.id}/>
+                    </div>
+                ) 
+             })}
+             {this.state.countries.map((country)=> {
                return (
                     <div>
                         <Country name={country.name} key={country.id} id={country.id} />
-                        <Capital name={capital.name} key={capital.id} id={capital.id} />
                     </div>
                 ) 
-                console.log(capital)
-                console.log(country)
              })}
         </div>
        )
