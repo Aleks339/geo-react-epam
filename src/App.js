@@ -68,11 +68,21 @@ class App extends React.Component{
         return (
           <div>
               {this.state.countries.map(country=> {
-               return <Country name={country.name} key={country.id} id={country.id} />
+               return(
+                   <ul>
+                    {this.renderListItems()}
+                  </ul>
+               ) //<Country  />
              })}
         </div>
        )
     }
+    renderListItems() {
+        return [
+          <li name={country.name} key={country.id} id={country.id} />,
+          <li name={capital.name} key={capital.id} id={capital.id} />
+        ]
+   }
 }
 
 class Country extends React.Component { 
