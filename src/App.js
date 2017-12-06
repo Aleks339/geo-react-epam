@@ -72,15 +72,15 @@ class App extends React.Component{
                    <ul>
                     {this.renderListItems()}
                   </ul>
-               ) //<Country  />
+               ) 
              })}
         </div>
        )
     }
     renderListItems() {
         return [
-          <li name={country.name} key={country.id} id={country.id} />,
-          <li name={capital.name} key={capital.id} id={capital.id} />
+          <Country name={country.props.name} key={country.props.id} id={country.props.id} />,
+          <Capital name={capital.props.name} key={capital.props.id} id={capital.props.id} />
         ]
    }
 }
