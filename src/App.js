@@ -27,24 +27,24 @@ const quiz_countries__country = {
     cursor: 'pointer'
 }
 
-let countryOnClick;
-let capitalOnClick;
-
-function onCapitalClick (event) {
-    event.currentTarget.style.backgroundColor = '#ccc';
-    capitalOnClick = event.currentTarget.id;            
-};
-function onCountryClick (event) {
-    event.currentTarget.style.backgroundColor = '#fc1';            
-    countryOnClick = event.currentTarget.id;  
-    if(countryOnClick === capitalOnClick){
-       alert ('Right');
-       event.currentTarget.style.display = 'none';
-    }else{
-        alert('Wrong');
-        event.currentTarget.style.display = 'visible';
-    }
-};
+//let countryOnClick;
+//let capitalOnClick;
+//
+//function onCapitalClick (event) {
+//    event.currentTarget.style.backgroundColor = '#ccc';
+//    capitalOnClick = event.currentTarget.id;            
+//};
+//function onCountryClick (event) {
+//    event.currentTarget.style.backgroundColor = '#fc1';            
+//    countryOnClick = event.currentTarget.id;  
+//    if(countryOnClick === capitalOnClick){
+//       alert ('Right');
+//       event.currentTarget.style.display = 'none';
+//    }else{
+//        alert('Wrong');
+//        event.currentTarget.style.display = 'visible';
+//    }
+//};
 
 /*
 создать компонент quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '1'>Germany</div>
@@ -53,7 +53,6 @@ function onCountryClick (event) {
 добавить map() пробежаться с помощью него по странам и столицам, вынести их
 
 */
-
 class App extends React.Component{
     static defaultPrors() {
         return {
@@ -70,6 +69,14 @@ class App extends React.Component{
         let capitals = this.state.capitals;
         let ramdomCountry = countries[Math.floor(Math.random() * countries.length)];
         let ramdomCapital = capitals[Math.floor(Math.random() * capitals.length)];
+        let isSelected = (countries.id === capitals.id);
+        let handleEvent = function(){
+            if (isSelected == true) {
+                this.element = {
+                    display: 'none'
+                }
+            }
+        }
         return (
           <div>
               {this.state.capitals.map((capital)=> {
@@ -94,7 +101,7 @@ class App extends React.Component{
 class Country extends React.Component { 
   render() {
     return (
-        <div style = {quiz_countries__country} onClick={onCountryClick} data-id = {this.props.id}>{this.props.name}</div>
+        <div style = {quiz_countries__country} onClick={this.handleEvent} data-id = {this.props.id}>{this.props.name}</div>
     )
   }
 }
@@ -102,7 +109,7 @@ class Country extends React.Component {
 class Capital extends React.Component {
   render() {
     return (
-        <div style = {quiz_capitals__capital} onClick={onCapitalClick} data-id = {this.props.id}>{this.props.name}</div>
+        <div style = {quiz_capitals__capital} onClick={this.handleEvent} data-id = {this.props.id}>{this.props.name}</div>
     )
   }
 }
