@@ -70,10 +70,14 @@ class App extends React.Component{
         let ramdomCountry = countries[Math.floor(Math.random() * countries.length)];
         let ramdomCapital = capitals[Math.floor(Math.random() * capitals.length)];
         let isSelected = (countries.id === capitals.id);
-        let handleEvent = function(){
+        let style = {
+            'background-color': '',
+            'display': ''
+        };
+        let handleEvent = function(){            
             if (isSelected == true) {
-                this.element = {
-                    display: 'none'
+                style = {
+                    'display': 'none'
                 }
             }
         }
@@ -82,14 +86,14 @@ class App extends React.Component{
               {this.state.capitals.map((capital)=> {
                return (
                     <div>
-                        <Capital name={capital.name} key={capital.id} id={capital.id}/>
+                        <Capital name={capital.name} id={capital.id}/>
                     </div>
                 ) 
              })}
              {this.state.countries.map((country)=> {
                return (
                     <div>
-                        <Country name={country.name} key={country.id} id={country.id} />
+                        <Country name={country.name} id={country.id} />
                     </div>
                 ) 
              })}
