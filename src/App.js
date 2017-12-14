@@ -1,20 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { Provider } from 'react-redux';
+import { connect } from 'react-redux';
 import { createStore } from 'redux';
 
-function App (state =
-{countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}, {name: 'Spain', id: 4}, {name: 'Norway', id: 5}, {name: 'Hungary', id: 6}], 
-capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 3}, {name: 'Madrid', id: 4}, {name: 'Oslo', id: 5}, {name: 'Budapest', id: 6}]}, action){
-        return state;
+function geoQuiz (state = {countries: [], capitals: [] }, action){
+        if(action.type === 'MIX_COUNTRIES')
+        return [
+        ...state,
+        action.countries
+    ];
 }
-const store = createStore(App);
+const store = createStore(geoQuiz);
 
 store.subscribe(() => {
     console.log('subscribe', store.getState())
 })
 
-store.dispatch({'type': 'MIX_COUNTRIES', payload: 'hi!'})
+store.dispatch({'type': 'MIX_COUNTRIES', payload: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}, {name: 'Spain', id: 4}, {name: 'Norway', id: 5}, {name: 'Hungary', id: 6}]});
+store.dispatch({'type': 'MIX_COUNTRIES', payload: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 3}, {name: 'Madrid', id: 4}, {name: 'Oslo', id: 5}, {name: 'Budapest', id: 6}]});
+
 /*
 создать компонент quiz_country <div style = {quiz_countries__country} onClick={onCountryClick} id = '1'>Germany</div>
 создать компонент quiz_capital
@@ -23,79 +29,82 @@ store.dispatch({'type': 'MIX_COUNTRIES', payload: 'hi!'})
 
 */
 
-//let countryOnClick = App.state.countries;
-//let capitalOnClick = App.state.capitals;
-//
-//function onCapitalClick (event) {
-//    event.currentTarget.style.backgroundColor = '#ccc';
-//    capitalOnClick = event.currentTarget.id;            
-//};
-//function onCountryClick (event) {
-//    event.currentTarget.style.backgroundColor = '#fc1';            
-//    countryOnClick = event.currentTarget.id;  
-//    if(countryOnClick === capitalOnClick){
-//       alert ('Right');
-//       event.currentTarget.style.display = 'none';
-//    }else{
-//        alert('Wrong');
-//        event.currentTarget.style.display = 'visible';
-//    }
-//}
+let countryOnClick = App.state.countries;
+let capitalOnClick = App.state.capitals;
 
-//class App extends React.Component{
-//    static defaultPrors() {
-//        return {
-//            countries: this.state.countries, 
-//            capitals: this.state.capitals
-//        }
-//    }
-//    state = {
-//       countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}, {name: 'Spain', id: 4}, {name: 'Norway', id: 5}, {name: 'Hungary', id: 6}],
-//       capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 3}, {name: 'Madrid', id: 4}, {name: 'Oslo', id: 5}, {name: 'Budapest', id: 6}],
-//        countryId: null,
-//        capitalId: null
-//    }
-//    render(){
-////        let isSelected = (countries.id === capitals.id);
-////        let style = {
-////            'background-color': '',
-////            'display': ''
-////        };
-//        return (
-//          <div className = 'quiz_wrapper'>
-//            <div className = 'quiz'>
-//              {this.state.capitals.map((capital)=> {
-//               return (
-//                     <Capital className = 'quiz_capitals quiz' name={capital.name} id={capital.id} key = {capital.id}/>
-//                )
-//             })}
-//            </div>
-//            <div className = 'quiz'>
-//             {this.state.countries.map((country)=> {
-//               return (
-//                     <Country className = 'quiz_countries quiz' name={country.name} id={country.id}  key = {country.id}/>
-//                ) 
-//             })}
-//            </div>
-//        </div>
-//       )
-//    }
-//}
-//
-//class Country extends React.Component { 
-//  render() {
-//    return (
-//        <div className = 'quiz_countries__country' data-id = {this.props.id}>{this.props.name}</div>
-//    )
-//  }
-//}
-//
-//class Capital extends React.Component {
-//  render() {
-//    return (
-//        <div className = 'quiz_capitals__capital' data-id = {this.props.id}>{this.props.name}</div>
-//    )
-//  }
-//}
+function onCapitalClick (event) {
+    event.currentTarget.style.backgroundColor = '#ccc';
+    capitalOnClick = event.currentTarget.id;            
+};
+function onCountryClick (event) {
+    event.currentTarget.style.backgroundColor = '#fc1';            
+    countryOnClick = event.currentTarget.id;  
+    if(countryOnClick === capitalOnClick){
+       alert ('Right');
+       event.currentTarget.style.display = 'none';
+    }else{
+        alert('Wrong');
+        event.currentTarget.style.display = 'visible';
+    }
+}
 
-export default App;
+class App extends React.Component{
+    static defaultPrors() {
+        return {
+            countries: this.state.countries, 
+            capitals: this.state.capitals
+        }
+    }
+    state = {
+       countries: [{name: 'Germany', id: 1}, {name: 'France', id: 2}, {name: 'Italy', id: 3}, {name: 'Spain', id: 4}, {name: 'Norway', id: 5}, {name: 'Hungary', id: 6}],
+       capitals: [{name: 'Berlin', id: 1}, {name: 'Paris', id: 2}, {name: 'Rome', id: 3}, {name: 'Madrid', id: 4}, {name: 'Oslo', id: 5}, {name: 'Budapest', id: 6}],
+        countryId: null,
+        capitalId: null
+    }
+    render(){
+//        let isSelected = (countries.id === capitals.id);
+//        let style = {
+//            'background-color': '',
+//            'display': ''
+//        };
+        return (
+          <div className = 'quiz_wrapper'>
+            <div className = 'quiz'>
+              {this.state.capitals.map((capital)=> {
+               return (
+                     <Capital className = 'quiz_capitals quiz' name={capital.name} id={capital.id} key = {capital.id}/>
+                )
+             })}
+            </div>
+            <div className = 'quiz'>
+             {this.state.countries.map((country)=> {
+               return (
+                     <Country className = 'quiz_countries quiz' name={country.name} id={country.id}  key = {country.id}/>
+                ) 
+             })}
+            </div>
+        </div>
+       )
+    }
+}
+
+class Country extends React.Component { 
+  render() {
+    return (
+        <div className = 'quiz_countries__country' data-id = {this.props.id}>{this.props.name}</div>
+    )
+  }
+}
+
+class Capital extends React.Component {
+  render() {
+    return (
+        <div className = 'quiz_capitals__capital' data-id = {this.props.id}>{this.props.name}</div>
+    )
+  }
+}
+
+export default connect(
+    state => ({}),
+    dispatch => ({})
+);
