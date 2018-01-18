@@ -104,7 +104,4 @@ class Capital extends React.Component {
   }
 }
 
-export default connect(
-    state => ({}),
-    dispatch => ({})
-);
+export default Provider;
